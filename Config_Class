@@ -1,1 +1,27 @@
+public class ConfigFileReader(){
+   private Properties properties;
+   final String propertyfilepath= System.getProperty("user.dir")+"\\src\\test\\resources\\Configs\\config.properties";
 
+
+  public ConfigFileReader(){
+    BufferedReader  reader;
+    try{
+      reader=new BufferedReader(new FileReader(propertyfilepath));
+      properties=new Properties();
+       try{
+          properties.load(reader);
+          reader.close();
+       }
+       catch(IOException e){
+         e.printStackTrace();
+       }
+    }
+    catch(FileNotFoundException e){
+      e.printStackTrace();
+			throw new RuntimeException("Configuration.properties not found at " + propertyFilePath);
+    }
+  }
+
+   
+  
+}
